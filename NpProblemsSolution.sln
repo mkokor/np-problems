@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanSatisfiabilityProble
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanSatisfiabilityProblem", "BooleanSatisfiabilityProblem\BooleanSatisfiabilityProblem.csproj", "{1B066F4C-AEB6-41F6-BC7C-6A88C15E5F00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueIndependentSetGraph", "CliqueIndependentSetGraph\CliqueIndependentSetGraph.csproj", "{01AC4D2B-DC0A-4D38-87C5-ECE300CA8A80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +30,9 @@ Global
 		{1B066F4C-AEB6-41F6-BC7C-6A88C15E5F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B066F4C-AEB6-41F6-BC7C-6A88C15E5F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B066F4C-AEB6-41F6-BC7C-6A88C15E5F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01AC4D2B-DC0A-4D38-87C5-ECE300CA8A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01AC4D2B-DC0A-4D38-87C5-ECE300CA8A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01AC4D2B-DC0A-4D38-87C5-ECE300CA8A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01AC4D2B-DC0A-4D38-87C5-ECE300CA8A80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
