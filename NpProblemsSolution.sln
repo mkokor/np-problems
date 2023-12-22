@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanSatisfiabilityProblem", "BooleanSatisfiabilityProblem\BooleanSatisfiabilityProblem.csproj", "{27C564AA-3CFD-4C6F-8CFB-63800BC7BF34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanSatisfiabilityProblem.Tests", "BooleanSatisfiabilityProblem.Tests\BooleanSatisfiabilityProblem.Tests.csproj", "{05E394B5-8BAE-4407-9C2C-8BED42455265}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{27C564AA-3CFD-4C6F-8CFB-63800BC7BF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27C564AA-3CFD-4C6F-8CFB-63800BC7BF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27C564AA-3CFD-4C6F-8CFB-63800BC7BF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E394B5-8BAE-4407-9C2C-8BED42455265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E394B5-8BAE-4407-9C2C-8BED42455265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E394B5-8BAE-4407-9C2C-8BED42455265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E394B5-8BAE-4407-9C2C-8BED42455265}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
