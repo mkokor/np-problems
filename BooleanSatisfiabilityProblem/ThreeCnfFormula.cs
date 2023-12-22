@@ -88,23 +88,11 @@ namespace BooleanSatisfiabilityProblem
                           .Max();
         }
 
-        private bool GetFormulaResult(List<bool> values)
-        {
-            foreach (var clause in formula)
-            {
-                bool clauseResult = false;
-                foreach (var literal in clause)
-                    clauseResult = clauseResult || (literal < 0 ? !values[Math.Abs(literal) - 1] : values[Math.Abs(literal) - 1]);
-                if (!clauseResult) return false;
-            }
-            return true;
-        }
-
         // This method is public only for testing purposes.
         public bool GetInterpretation(List<bool> variables, int index = 0)
         {
             if (index == variables.Count)
-                if (GetFormulaResult(variables))
+                if (VerifyFormula(variables))
                     return true;
                 else return false;
 
@@ -123,6 +111,30 @@ namespace BooleanSatisfiabilityProblem
             List<bool> variables = new(new bool[GetHighestVariable()]);
             if (GetInterpretation(variables)) return true;
             return false;
+        }
+        #endregion
+
+        #region FormulaVerification
+        public bool VerifyFormula(List<bool> values)
+        {
+            if (formula.Count == 0) throw new InvalidOperationException("Formula is empty.");
+            if (values.Count < GetHighestVariable()) throw new InvalidInputException();
+            foreach (var clause in formula)
+            {
+                bool clauseResult = false;
+                foreach (var literal in clause)
+                {
+                    bool value = values[Math.Abs(literal) - 1];
+                    if (literal < 0) value = !value;
+                    if (value)
+                    {
+                        clauseResult = true;
+                        break;
+                    }
+                }
+                if (!clauseResult) return false;
+            }
+            return true;
         }
         #endregion
     }
