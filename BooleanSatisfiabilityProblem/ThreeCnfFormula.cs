@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using BooleanSatisfiabilityProblem.Exceptions;
 
 namespace BooleanSatisfiabilityProblem
@@ -8,13 +7,22 @@ namespace BooleanSatisfiabilityProblem
     // CONSTRAINT: 8 clauses (24 variables) maximum
     public class ThreeCnfFormula
     {
-        private List<List<int>> formula;
+        public List<List<int>> formula;
 
         public ThreeCnfFormula()
         {
             formula = new List<List<int>>();
         }
 
+        #region Setter
+        // Setter is made public only for testing purposes.
+        public void SetFormula(List<List<int>> formula)
+        {
+            this.formula = formula;
+        }
+        #endregion
+
+        #region FormulaInput
         // This method was made public only for testing purposes.
         public static List<List<int>> ValidateFormulaInput(string formulaInput)
         {
@@ -55,7 +63,7 @@ namespace BooleanSatisfiabilityProblem
             return formulaInput;
         }
 
-        public void EnterFormula()
+        public void InputFormula()
         {
             Console.WriteLine("Enter 3-cnf formula (8 clauses maximum, empty row - exit):");
             while (true)
@@ -70,11 +78,51 @@ namespace BooleanSatisfiabilityProblem
                     Console.WriteLine("\nEnter 3-cnf formula (8 clauses maximum, empty row - exit):");
                 }
         }
+        #endregion
 
-        #region GetterAndSetter
-        private void SetFormula(List<List<int>> formula)
+        #region FormulaSatisfiabilityCheck
+        private int GetHighestVariable()
         {
-            this.formula = formula;
+            return formula.Select(clause => clause.Select(literal => Math.Abs(literal)))
+                          .Select(clause => clause.Max())
+                          .Max();
+        }
+
+        private bool GetFormulaResult(List<bool> values)
+        {
+            foreach (var clause in formula)
+            {
+                bool clauseResult = false;
+                foreach (var literal in clause)
+                    clauseResult = clauseResult || (literal < 0 ? !values[Math.Abs(literal) - 1] : values[Math.Abs(literal) - 1]);
+                if (!clauseResult) return false;
+            }
+            return true;
+        }
+
+        // This method is public only for testing purposes.
+        public bool GetInterpretation(List<bool> variables, int index = 0)
+        {
+            if (index == variables.Count)
+                if (GetFormulaResult(variables))
+                    return true;
+                else return false;
+
+            variables[index] = true;
+            if (GetInterpretation(variables, index + 1)) return true;
+
+            variables[index] = false;
+            if (GetInterpretation(variables, index + 1)) return true;
+
+            return false;
+        }
+
+        public bool IsFormulaSatisfiable()
+        {
+            if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
+            List<bool> variables = new(new bool[GetHighestVariable()]);
+            if (GetInterpretation(variables)) return true;
+            return false;
         }
         #endregion
     }
