@@ -15,7 +15,8 @@ namespace CliqueIndependentSetGraph
         }
 
         #region GetterAndSetter
-        private void SetAdjacencyMatrix(List<List<int>> edges, int numberOfNodes)
+        // This method wase made public only for testing purposes.
+        public void SetAdjacencyMatrix(List<List<int>> edges, int numberOfNodes)
         {
             adjacencyMatrix = new bool[numberOfNodes, numberOfNodes];
             edges.ForEach(edge =>
@@ -51,6 +52,7 @@ namespace CliqueIndependentSetGraph
             }
         }
 
+        // This method was made public only for testing purposes.
         public static List<List<int>> ValidateEdgesInput(string edgesInput, int numberOfNodes)
         {
             List<List<int>> edges = new();

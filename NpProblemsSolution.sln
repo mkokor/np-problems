@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueIndependentSetGraph",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpProblemsSolver", "NpProblemsSolver\NpProblemsSolver.csproj", "{548E1883-A216-4B75-9A7D-6CB532A69A42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqueIndependentSetGraph.Tests", "CliqueIndependentSetGraph.Tests\CliqueIndependentSetGraph.Tests.csproj", "{2F6ED95E-9846-45FB-8CD6-4058954B91B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,5 +42,9 @@ Global
 		{548E1883-A216-4B75-9A7D-6CB532A69A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{548E1883-A216-4B75-9A7D-6CB532A69A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{548E1883-A216-4B75-9A7D-6CB532A69A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6ED95E-9846-45FB-8CD6-4058954B91B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6ED95E-9846-45FB-8CD6-4058954B91B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6ED95E-9846-45FB-8CD6-4058954B91B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6ED95E-9846-45FB-8CD6-4058954B91B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

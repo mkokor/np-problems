@@ -6,7 +6,7 @@ namespace BooleanSatisfiabilityProblem.Tests;
 public class FormulaInputTest
 {
     [TestMethod]
-    public void EnterFormula_EmptyInput_ThrowsInvalidInputException()
+    public void ValidateFormulaInput_EmptyInput_ThrowsInvalidInputException()
     {
         Assert.ThrowsException<InvalidInputException>(() => ThreeCnfFormula.ValidateFormulaInput(""));
     }
