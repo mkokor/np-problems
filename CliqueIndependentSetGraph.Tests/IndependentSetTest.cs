@@ -11,7 +11,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> independentSet = new();
 
-            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 5, graph.IsIndependent));
+            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 5, graph.VerifyIndependentSet));
             CollectionAssert.AreEqual(new List<int> { 0, 1, 2, 3 }, independentSet);
         }
 
@@ -26,7 +26,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> independentSet = new();
 
-            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 6, graph.IsIndependent));
+            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 6, graph.VerifyIndependentSet));
             CollectionAssert.AreEqual(new List<int> { 0, 2, 3, 4 }, independentSet);
         }
 
@@ -56,7 +56,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> independentSet = new();
 
-            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 7, graph.IsIndependent));
+            Assert.IsTrue(graph.GetSubset(independentSet, 0, 4, 7, graph.VerifyIndependentSet));
             CollectionAssert.AreEqual(new List<int> { 0, 3, 4, 5 }, independentSet);
         }
 
@@ -86,7 +86,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> independentSet = new();
 
-            Assert.IsTrue(graph.GetSubset(independentSet, 0, 3, 7, graph.IsIndependent));
+            Assert.IsTrue(graph.GetSubset(independentSet, 0, 3, 7, graph.VerifyIndependentSet));
             CollectionAssert.AreEqual(new List<int> { 0, 3, 4 }, independentSet);
         }
     }

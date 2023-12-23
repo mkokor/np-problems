@@ -11,7 +11,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> clique = new();
 
-            Assert.IsFalse(graph.GetSubset(clique, 0, 4, 5, graph.IsClique));
+            Assert.IsFalse(graph.GetSubset(clique, 0, 4, 5, graph.VerifyClique));
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> clique = new();
 
-            Assert.IsTrue(graph.GetSubset(clique, 0, 2, 6, graph.IsClique));
+            Assert.IsTrue(graph.GetSubset(clique, 0, 2, 6, graph.VerifyClique));
             CollectionAssert.AreEqual(new List<int> { 0, 1 }, clique);
         }
 
@@ -67,7 +67,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> clique = new();
 
-            Assert.IsTrue(graph.GetSubset(clique, 0, 5, 7, graph.IsClique));
+            Assert.IsTrue(graph.GetSubset(clique, 0, 5, 7, graph.VerifyClique));
             CollectionAssert.AreEqual(new List<int> { 1, 2, 4, 5, 6 }, clique);
         }
 
@@ -109,7 +109,7 @@ namespace CliqueIndependentSetGraph.Tests
 
             List<int> clique = new();
 
-            Assert.IsTrue(graph.GetSubset(clique, 0, 4, 7, graph.IsClique));
+            Assert.IsTrue(graph.GetSubset(clique, 0, 4, 7, graph.VerifyClique));
             CollectionAssert.AreEqual(new List<int> { 1, 2, 4, 5 }, clique);
         }
     }

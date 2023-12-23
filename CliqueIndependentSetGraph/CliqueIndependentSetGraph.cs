@@ -139,8 +139,7 @@ namespace CliqueIndependentSetGraph
         #endregion
 
         #region IndependentSetCheck
-        // This method was made public only for testing purposes.
-        public bool IsIndependent(List<int> set)
+        public bool VerifyIndependentSet(List<int> set)
         {
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
@@ -154,15 +153,14 @@ namespace CliqueIndependentSetGraph
         {
             if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
             List<int> independentSet = new();
-            if (GetSubset(independentSet, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), IsIndependent))
+            if (GetSubset(independentSet, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), VerifyIndependentSet))
                 return true;
             return false;
         }
         #endregion
 
         #region CliqueCheck
-        // This method was made public only for testing purposes.
-        public bool IsClique(List<int> set)
+        public bool VerifyClique(List<int> set)
         {
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
@@ -176,7 +174,7 @@ namespace CliqueIndependentSetGraph
         {
             if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
             List<int> clique = new();
-            if (GetSubset(clique, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), IsClique))
+            if (GetSubset(clique, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), VerifyClique))
             {
                 Console.WriteLine(string.Join(", ", clique));
                 return true;
