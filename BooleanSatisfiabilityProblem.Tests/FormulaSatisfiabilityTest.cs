@@ -8,7 +8,7 @@ namespace BooleanSatisfiabilityProblem.Tests
         {
             var threeCnfFormula = new ThreeCnfFormula();
 
-            Assert.ThrowsException<InvalidOperationException>(() => threeCnfFormula.IsFormulaSatisfiable());
+            Assert.ThrowsException<InvalidOperationException>(() => threeCnfFormula.IsSatisfiable());
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace BooleanSatisfiabilityProblem.Tests
             threeCnfFormula.GetInterpretation(actualResult);
             List<bool> expectedResult = new() { false };
 
-            Assert.IsTrue(threeCnfFormula.IsFormulaSatisfiable());
+            Assert.IsTrue(threeCnfFormula.IsSatisfiable());
             CollectionAssert.AreEqual(actualResult, expectedResult);
         }
 
@@ -40,7 +40,7 @@ namespace BooleanSatisfiabilityProblem.Tests
             threeCnfFormula.GetInterpretation(actualResult);
             List<bool> expectedResult = new() { false, false, false };
 
-            Assert.IsTrue(threeCnfFormula.IsFormulaSatisfiable());
+            Assert.IsTrue(threeCnfFormula.IsSatisfiable());
             CollectionAssert.AreEqual(actualResult, expectedResult);
         }
 
@@ -54,7 +54,7 @@ namespace BooleanSatisfiabilityProblem.Tests
                 new() { 1, 1, 1 }
             });
 
-            Assert.IsFalse(threeCnfFormula.IsFormulaSatisfiable());
+            Assert.IsFalse(threeCnfFormula.IsSatisfiable());
         }
     }
 }

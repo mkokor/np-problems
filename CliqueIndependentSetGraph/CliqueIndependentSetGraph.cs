@@ -36,7 +36,7 @@ namespace CliqueIndependentSetGraph
         {
             while (true)
             {
-                Console.Write("\nEnter number of nodes (15 maximum): ");
+                Console.Write("Enter number of nodes (15 maximum): ");
                 string? input = Console.ReadLine();
                 try
                 {
@@ -47,7 +47,7 @@ namespace CliqueIndependentSetGraph
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("\nInvalid input! Try again.");
+                    Console.WriteLine("\nInvalid input! Try again.\n");
                 }
             }
         }
@@ -141,8 +141,10 @@ namespace CliqueIndependentSetGraph
         #region IndependentSetCheck
         public bool VerifyIndependentSet(List<int> set)
         {
+            if (adjacencyMatrix.Length == 0) throw new InvalidOperationException("Graph is not provided.");
+            if (set.Count < 2) throw new InvalidOperationException("Subset size must be at least 2.");
             if (set.Max() > (int)Math.Sqrt(adjacencyMatrix.Length))
-                return false;
+                throw new InvalidInputException("Invalid input.");
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
                     if (adjacencyMatrix[set[source], set[destination]])
@@ -153,6 +155,8 @@ namespace CliqueIndependentSetGraph
         // This method checks if there is an independent set with size at least k in current graph (with brute force).
         public bool HasIndependentSet(int k)
         {
+            if (adjacencyMatrix.Length == 0) throw new InvalidOperationException("Graph is not provided.");
+            if (k < 2) throw new InvalidOperationException("Subset size must be at least 2.");
             if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
             List<int> independentSet = new();
             if (GetSubset(independentSet, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), VerifyIndependentSet))
@@ -164,10 +168,13 @@ namespace CliqueIndependentSetGraph
         #region CliqueCheck
         public bool VerifyClique(List<int> set)
         {
+            if (adjacencyMatrix.Length == 0) throw new InvalidOperationException("Graph is not provided.");
+            if (set.Count < 2) throw new InvalidOperationException("Subset size must be at least 2.");
             if (set.Max() > (int)Math.Sqrt(adjacencyMatrix.Length))
-                return false;
+                throw new InvalidInputException("Invalid input.");
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
+                    // Node can not be related to itself (program will ignore it).
                     if (source != destination && !adjacencyMatrix[set[source], set[destination]])
                         return false;
             return true;
@@ -176,13 +183,12 @@ namespace CliqueIndependentSetGraph
         // This method checks if there is an clique with size at least k in current graph (with brute force).
         public bool HasClique(int k)
         {
+            if (adjacencyMatrix.Length == 0) throw new InvalidOperationException("Graph is not provided.");
+            if (k < 2) throw new InvalidOperationException("Subset size must be at least 2.");
             if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
             List<int> clique = new();
             if (GetSubset(clique, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), VerifyClique))
-            {
-                Console.WriteLine(string.Join(", ", clique));
                 return true;
-            }
             return false;
         }
         #endregion

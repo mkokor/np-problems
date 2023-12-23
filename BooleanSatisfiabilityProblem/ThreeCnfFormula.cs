@@ -105,7 +105,7 @@ namespace BooleanSatisfiabilityProblem
             return false;
         }
 
-        public bool IsFormulaSatisfiable()
+        public bool IsSatisfiable()
         {
             if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
             List<bool> variables = new(new bool[GetHighestVariable()]);
@@ -117,8 +117,8 @@ namespace BooleanSatisfiabilityProblem
         #region FormulaVerification
         public bool VerifyFormula(List<bool> values)
         {
-            if (formula.Count == 0) throw new InvalidOperationException("Formula is empty.");
-            if (values.Count < GetHighestVariable()) throw new InvalidInputException();
+            if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
+            if (values.Count != GetHighestVariable()) throw new InvalidInputException();
             foreach (var clause in formula)
             {
                 bool clauseResult = false;
