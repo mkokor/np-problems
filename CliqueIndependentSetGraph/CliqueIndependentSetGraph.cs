@@ -4,7 +4,7 @@ namespace CliqueIndependentSetGraph
 {
     // This class represents graph, and provides methods for 
     // solving clique and independent set problems (wiht brute force).
-    // CONSTRAINT: 15 nodes maximum
+    // CONSTRAINT: 15 nodes maximum, node can not be related to itself (program will ignore it)
     public class CliqueIndependentSetGraph
     {
         private bool[,] adjacencyMatrix;
