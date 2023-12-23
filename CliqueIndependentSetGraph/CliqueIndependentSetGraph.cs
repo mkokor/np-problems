@@ -141,6 +141,8 @@ namespace CliqueIndependentSetGraph
         #region IndependentSetCheck
         public bool VerifyIndependentSet(List<int> set)
         {
+            if (set.Max() > (int)Math.Sqrt(adjacencyMatrix.Length))
+                return false;
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
                     if (adjacencyMatrix[set[source], set[destination]])
@@ -162,6 +164,8 @@ namespace CliqueIndependentSetGraph
         #region CliqueCheck
         public bool VerifyClique(List<int> set)
         {
+            if (set.Max() > (int)Math.Sqrt(adjacencyMatrix.Length))
+                return false;
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
                     if (source != destination && !adjacencyMatrix[set[source], set[destination]])
