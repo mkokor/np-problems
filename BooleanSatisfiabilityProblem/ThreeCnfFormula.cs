@@ -7,7 +7,7 @@ namespace BooleanSatisfiabilityProblem
     // CONSTRAINT: 8 clauses (24 variables) maximum
     public class ThreeCnfFormula
     {
-        public List<List<int>> formula;
+        private List<List<int>> formula;
 
         public ThreeCnfFormula()
         {
