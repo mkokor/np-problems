@@ -114,8 +114,33 @@ namespace CliqueIndependentSetGraph
         }
         #endregion
 
+        #region GettingSubsetWithCertainCondition
+        // This method was made public only for testing purposes.
+        public bool GetSubset(List<int> currentSet, int index, int cliqueSize, int numberOfNodes, SubsetCondition subsetCondition)
+        {
+            if (cliqueSize == 0)
+            {
+                if (subsetCondition(currentSet)) return true;
+                return false;
+            }
+
+            for (int i = index; i < numberOfNodes; i++)
+            {
+                currentSet.Add(i);
+                if (GetSubset(currentSet, i + 1, cliqueSize - 1, numberOfNodes, subsetCondition))
+                    return true;
+                currentSet.RemoveAt(currentSet.Count - 1);
+            }
+
+            return false;
+        }
+
+        public delegate bool SubsetCondition(List<int> subset);
+        #endregion
+
         #region IndependentSetCheck
-        private bool IsIndependent(List<int> set)
+        // This method was made public only for testing purposes.
+        public bool IsIndependent(List<int> set)
         {
             for (int source = 0; source < set.Count; source++)
                 for (int destination = source + 1; destination < set.Count; destination++)
@@ -124,35 +149,40 @@ namespace CliqueIndependentSetGraph
             return true;
         }
 
-        // This method was made public only for testing purposes.
-        public bool GetIndependentSet(List<int> currentSet, int index, int independentSetSize, int numberOfNodes)
-        {
-            if (independentSetSize == 0)
-            {
-                if (IsIndependent(currentSet)) return true;
-                return false;
-            }
-
-            for (int i = index; i < numberOfNodes; i++)
-            {
-                currentSet.Add(i);
-                if (GetIndependentSet(currentSet, i + 1, independentSetSize - 1, numberOfNodes))
-                    return true;
-                currentSet.RemoveAt(currentSet.Count - 1);
-            }
-
-            return false;
-        }
-
         // This method checks if there is an independent set with size at least k in current graph (with brute force).
         public bool HasIndependentSet(int k)
         {
             if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
             List<int> independentSet = new();
-            if (GetIndependentSet(independentSet, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length)))
+            if (GetSubset(independentSet, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), IsIndependent))
                 return true;
             return false;
         }
-        #endregion    
+        #endregion
+
+        #region CliqueCheck
+        // This method was made public only for testing purposes.
+        public bool IsClique(List<int> set)
+        {
+            for (int source = 0; source < set.Count; source++)
+                for (int destination = source + 1; destination < set.Count; destination++)
+                    if (source != destination && !adjacencyMatrix[set[source], set[destination]])
+                        return false;
+            return true;
+        }
+
+        // This method checks if there is an clique with size at least k in current graph (with brute force).
+        public bool HasClique(int k)
+        {
+            if (k > (int)Math.Sqrt(adjacencyMatrix.Length)) return false;
+            List<int> clique = new();
+            if (GetSubset(clique, 0, k, (int)Math.Sqrt(adjacencyMatrix.Length), IsClique))
+            {
+                Console.WriteLine(string.Join(", ", clique));
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

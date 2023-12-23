@@ -7,6 +7,6 @@
 
     var q = a.GetAdjacencyMatrix();
 
-    a.HasIndependentSet(4);
+    a.HasClique(4);
   }
 }
