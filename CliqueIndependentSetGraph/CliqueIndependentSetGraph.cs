@@ -42,7 +42,7 @@ namespace CliqueIndependentSetGraph
                 {
                     if (string.IsNullOrWhiteSpace(input)) throw new InvalidInputException();
                     int numberOfNodes = int.Parse(input);
-                    if (numberOfNodes < 1) throw new InvalidInputException();
+                    if (numberOfNodes < 1 || numberOfNodes > 15) throw new InvalidInputException();
                     return numberOfNodes;
                 }
                 catch (Exception)
