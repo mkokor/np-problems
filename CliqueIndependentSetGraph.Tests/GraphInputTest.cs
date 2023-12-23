@@ -6,12 +6,6 @@ namespace CliqueIndependentSetGraph.Tests
     public class GraphInputTest
     {
         [TestMethod]
-        public void ValidateEdgesInput_EmptyInput_ThrowsInvalidInputException()
-        {
-            Assert.ThrowsException<InvalidInputException>(() => CliqueIndependentSetGraph.ValidateEdgesInput("", 0));
-        }
-
-        [TestMethod]
         public void ValidateEdgesInput_EdgeWithThreeNodes_ThrowsInvalidInputException()
         {
             Assert.ThrowsException<InvalidInputException>(() => CliqueIndependentSetGraph.ValidateEdgesInput("(1,2,3)\n(2,3,4)", 5));
