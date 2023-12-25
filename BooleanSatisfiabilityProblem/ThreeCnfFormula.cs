@@ -149,7 +149,6 @@ namespace BooleanSatisfiabilityProblem
         {
             if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
             int subsetSize = GetNumberOfClauses();
-            CliqueIndependentSetGraph.CliqueIndependentSetGraph graph = new();
             List<List<int>> edges = new();
             for (int clause = 0; clause < subsetSize; clause++)
             {
@@ -186,7 +185,7 @@ namespace BooleanSatisfiabilityProblem
             return new Tuple<List<List<int>>, int>(edges, subsetSize * 3);
         }
 
-        // This method returns graph (for independent set problem) and k (number of required independent nodes):
+        // This method returns graph (for independent set problem) and k (number of required independent nodes).
         public Tuple<bool[,], int> ReduceToIndependentSet()
         {
             if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
@@ -194,6 +193,56 @@ namespace BooleanSatisfiabilityProblem
             var graph = new CliqueIndependentSetGraph.CliqueIndependentSetGraph();
             graph.SetAdjacencyMatrix(graphProperties.Item1, graphProperties.Item2);
             return new Tuple<bool[,], int>(graph.GetAdjacencyMatrix(), GetNumberOfClauses());
+        }
+
+        // This method returns list of edges and number of nodes.
+        private Tuple<List<List<int>>, int> GetGraphForClique()
+        {
+            if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
+            int subsetSize = GetNumberOfClauses();
+            List<List<int>> edges = new();
+            for (int i = 0; i < subsetSize; i++)
+            {
+                List<int> sourceClauseLiterals = new()
+                {
+                    formula[i][0],
+                    formula[i][1],
+                    formula[i][2]
+                };
+                for (int j = 0; j < subsetSize; j++)
+                    if (i != j)
+                    {
+                        List<int> destinationClauseLiterals = new()
+                        {
+                            formula[j][0],
+                            formula[j][1],
+                            formula[j][2]
+                        };
+                        for (int k = 0; k < 3; k++)
+                            for (int l = 0; l < 3; l++)
+                                if (sourceClauseLiterals[k] != -destinationClauseLiterals[l])
+                                    edges.Add(new() { i * 3 + k + 1, j * 3 + l + 1 });
+                    }
+            }
+            return new Tuple<List<List<int>>, int>(edges, subsetSize * 3);
+        }
+
+        // This method returns graph (for clique problem) and k (size of required clique subset).
+        public Tuple<bool[,], int> ReduceToClique()
+        {
+            if (formula.Count == 0) throw new InvalidOperationException("Formula is not provided.");
+            var graphProperties = GetGraphForClique();
+            var graph = new CliqueIndependentSetGraph.CliqueIndependentSetGraph();
+            graph.SetAdjacencyMatrix(graphProperties.Item1, graphProperties.Item2);
+            return new Tuple<bool[,], int>(graph.GetAdjacencyMatrix(), GetNumberOfClauses());
+        }
+
+        // This method converts node index to literal.
+        private int GetLiteral(int nodeIndex)
+        {
+            int clause = nodeIndex / 3;
+            int literal = nodeIndex % 3;
+            return formula[clause][literal];
         }
         #endregion
     }

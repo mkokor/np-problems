@@ -4,7 +4,7 @@ namespace BooleanSatisfiabilityProblem.Tests
     public class IndependentSetReductionTest
     {
         [TestMethod]
-        public void ReduceToIndependentSet()
+        public void ReduceToIndependentSet_MultipleClauses_ReturnsCorrectResult()
         {
             ThreeCnfFormula formula = new();
 

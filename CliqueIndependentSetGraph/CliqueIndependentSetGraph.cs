@@ -3,7 +3,7 @@ using Exceptions;
 namespace CliqueIndependentSetGraph
 {
     // This class represents graph, and provides methods for 
-    // solving clique and independent set problems (wiht brute force).
+    // solving clique and independent set problems (with brute force).
     // CONSTRAINT: 15 nodes maximum (this constraint is not valid when using setter), node can not be related to itself (program will ignore it)
     public class CliqueIndependentSetGraph
     {
@@ -120,7 +120,7 @@ namespace CliqueIndependentSetGraph
         }
         #endregion
 
-        #region GettingSubsetWithCertainCondition
+        #region GettingSubsetWithCertainConditionW
         // This method was made public only for testing purposes.
         public bool GetSubset(List<int> currentSet, int index, int cliqueSize, int numberOfNodes, SubsetCondition subsetCondition)
         {
