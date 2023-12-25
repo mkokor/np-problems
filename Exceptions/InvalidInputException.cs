@@ -1,4 +1,4 @@
-namespace BooleanSatisfiabilityProblem.Exceptions
+namespace Exceptions
 {
     public class InvalidInputException : Exception
     {

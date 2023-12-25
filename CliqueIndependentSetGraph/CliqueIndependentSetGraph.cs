@@ -1,10 +1,10 @@
-using BooleanSatisfiabilityProblem.Exceptions;
+using Exceptions;
 
 namespace CliqueIndependentSetGraph
 {
     // This class represents graph, and provides methods for 
     // solving clique and independent set problems (wiht brute force).
-    // CONSTRAINT: 15 nodes maximum, node can not be related to itself (program will ignore it)
+    // CONSTRAINT: 15 nodes maximum (this constraint is not valid when using setter), node can not be related to itself (program will ignore it)
     public class CliqueIndependentSetGraph
     {
         private bool[,] adjacencyMatrix;
@@ -15,9 +15,15 @@ namespace CliqueIndependentSetGraph
         }
 
         #region GetterAndSetter
-        // This methods were made public only for testing purposes.
+        private static void ValidateEdges(List<List<int>> edges, int numberOfNodes)
+        {
+            foreach (var edge in edges)
+                if (edge[0] > numberOfNodes || edge[1] > numberOfNodes) throw new ArgumentException("Provided edges are not valid.");
+        }
+
         public void SetAdjacencyMatrix(List<List<int>> edges, int numberOfNodes)
         {
+            ValidateEdges(edges, numberOfNodes);
             adjacencyMatrix = new bool[numberOfNodes, numberOfNodes];
             edges.ForEach(edge =>
             {

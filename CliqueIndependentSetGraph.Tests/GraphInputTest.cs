@@ -1,4 +1,4 @@
-using BooleanSatisfiabilityProblem.Exceptions;
+using Exceptions;
 
 namespace CliqueIndependentSetGraph.Tests
 {

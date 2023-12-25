@@ -1,9 +1,9 @@
 ﻿using BooleanSatisfiabilityProblem;
-using BooleanSatisfiabilityProblem.Exceptions;
+using Exceptions;
 
 internal class Program
 {
-    private static readonly List<int> _availableOptions = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    private static readonly List<int> _availableOptions = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     private static readonly ThreeCnfFormula _formula = new();
     private static readonly CliqueIndependentSetGraph.CliqueIndependentSetGraph _graph = new();
 
@@ -167,12 +167,32 @@ internal class Program
             }
     }
 
+    private static void ReduceToIndependentSetProblem()
+    {
+        try
+        {
+            var independentSetEntry = _formula.ReduceToIndependentSet();
+            Console.Write("\n\nArguments for independent set problem:\n\ngraph = ");
+            for (int row = 0; row < (int)Math.Sqrt(independentSetEntry.Item1.Length); row++)
+            {
+                for (int column = 0; column < (int)Math.Sqrt(independentSetEntry.Item1.Length); column++)
+                    Console.Write((row != 0 && column == 0 ? "        " : "") + (independentSetEntry.Item1[row, column] ? "1 " : "0 "));
+                Console.WriteLine();
+            }
+            Console.WriteLine($"\nk = {independentSetEntry.Item2}");
+        }
+        catch (InvalidOperationException exception)
+        {
+            Console.WriteLine($"\n\n{exception.Message}");
+        }
+    }
+
     private static void Main(string[] args)
     {
         Console.WriteLine("\nWelcome!");
         while (true)
         {
-            Console.WriteLine("\n\nAvailable options: \n    1 - Formula input\n    2 - Graph input\n    3 - Is formula satisfiable?\n    4 - Is there independent set?\n    5 - Is there clique?\n    6 - Formula verification\n    7 - Independent set verification\n    8 - Clique verification\n    9 - Exit");
+            Console.WriteLine("\n\nAvailable options: \n    1 - Formula input\n    2 - Graph input\n    3 - Is formula satisfiable?\n    4 - Is there independent set?\n    5 - Is there clique?\n    6 - Formula verification\n    7 - Independent set verification\n    8 - Clique verification\n    9 - Reduce 3-SAT to independent set problem    \n    10 - Exit");
             int userChoice = GetSelectedOption();
             if (userChoice == 1)
             {
@@ -231,6 +251,8 @@ internal class Program
             else if (userChoice == 8)
                 VerifyClique();
             else if (userChoice == 9)
+                ReduceToIndependentSetProblem();
+            else if (userChoice == 10)
             {
                 Console.Write("\n\nThank you for your time! Goodbye.\n");
                 break;

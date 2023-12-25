@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooleanSatisfiabilityProblem\BooleanSatisfiabilityProblem.csproj" />
-    <ProjectReference Include="..\CliqueIndependentSetGraph\CliqueIndependentSetGraph.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
