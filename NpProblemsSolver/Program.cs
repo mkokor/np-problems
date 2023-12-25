@@ -260,7 +260,7 @@ internal class Program
                 ReduceThreeSat();
             else if (userChoice == 10)
                 ReduceThreeSat(toIdenpendentSet: false);
-            else if (userChoice == 10)
+            else if (userChoice == 11)
             {
                 Console.Write("\n\nThank you for your time! Goodbye.\n");
                 break;
